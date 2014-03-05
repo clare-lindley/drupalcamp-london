@@ -12,3 +12,5 @@ Contains:
 and see everything working out of the box).
 
 3. Presentation slides (in .pptx format)
+
+The Twitter API wrapper comes from here btw: https://github.com/J7mbo/twitter-api-php
