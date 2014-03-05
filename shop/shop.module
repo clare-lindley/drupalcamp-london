@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implements hook_views_api().
+ *
+ * Hey Drupal! This is where all our views stuff is
+ */
+function shop_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'shop') . '/views',
+  );
+}

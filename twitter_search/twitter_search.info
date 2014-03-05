@@ -1,0 +1,15 @@
+name = "Twitter Search"
+description = "Demo module for Drupalcamp."
+core = 7.x
+
+dependencies[] = ctools
+dependencies[] = views
+
+; Views Handlers
+files[] = handlers/twitter_search_handler_field.inc
+
+; Views Plugins
+files[] = plugins/twitter_search_plugin_query.inc
+
+; Libs
+files[] = twitter-api-php/TwitterAPIExchange.php

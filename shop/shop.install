@@ -1,0 +1,155 @@
+<?php
+
+function shop_schema() {
+
+  $schema['product'] = array(
+
+    'description' => 'The base table for products.',
+    'fields' => array(
+      'pid' => array(
+        'description' => 'The primary identifier for a product.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'title' => array(
+        'description' => 'The title of this product, always treated as non-markup plain text.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'description' => array(
+        'description' => 'The description of this product, always treated as non-markup plain text.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'image' => array(
+        'description' => 'The image path for this product, always treated as non-markup plain text.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('pid'),
+
+  );
+
+  $schema['customer'] = array(
+
+    'description' => 'The base table for customers.',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'The primary identifier for a customer.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'firstname' => array(
+        'description' => 'The firstname of this customer',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'lastname' => array(
+        'description' => 'The lastname of this customer',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'email' => array(
+        'description' => 'The email address of this customer.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('cid'),
+
+  );
+
+  $schema['orders'] = array(
+
+    'description' => 'The base table for orders.',
+    'fields' => array(
+      'oid' => array(
+        'description' => 'The primary identifier for an order.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'cid' => array(
+        'description' => 'The customer id.',
+        'type' => 'int',
+      ),
+      'order_date' => array(
+        'description' => 'The order date.',
+        'type' => 'int',
+      ),
+      'shipped_date' => array(
+        'description' => 'The shipped date.',
+        'type' => 'int',
+      ),
+      'status' => array(
+        'description' => 'The status of the order.',
+        'type' => 'int',
+      ),
+    ),
+    'primary key' => array('oid'),
+
+  );
+
+  $schema['order_details'] = array(
+
+    'description' => 'The base table for order details.',
+    'fields' => array(
+      'did' => array(
+        'description' => 'The primary identifier for a order detail.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'oid' => array(
+        'description' => 'The order this order detail relates to.',
+        'type' => 'int',
+      ),
+      'pid' => array(
+        'description' => 'The product id.',
+        'type' => 'int',
+      ),
+      'qty' => array(
+        'description' => 'The quantity of the product.',
+        'type' => 'int',
+      ),
+      'price' => array(
+        'description' => 'The price.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'foreign keys' => array(
+      'product' => array(
+        'table' => 'product',
+        'columns' => array('pid' => 'pid'),
+      ),
+      'orders' => array(
+        'table' => 'orders',
+        'columns' => array('oid' => 'oid'),
+      ),
+    ),
+    'primary key' => array('did'),
+
+  );
+
+
+  return $schema;
+}
+
