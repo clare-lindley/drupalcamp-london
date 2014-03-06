@@ -3,6 +3,8 @@ drupalcamp-london
 
 Code examples and slides for Drupalcamp London views session
 
+(NOTE: Most definitely NOT production code! Just a demo)
+
 Contains:
 
 1. 2 demo modules: shop, twitter_search
